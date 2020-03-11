@@ -1,7 +1,7 @@
 chrome.browserAction.onClicked.addListener(function (tab) {
     clearCurrentActiveTabCookie(tab.url);
     clearTabDomainCookie(tab.url);
-    // reloadCurrentTab();
+    reloadCurrentTab();
 });
 
 function clearCurrentActiveTabCookie(url) {
