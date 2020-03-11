@@ -1,8 +1,12 @@
 chrome.browserAction.onClicked.addListener(function (tab) {
-    clearCurrentActiveTabCookie(tab.url);
-    clearTabDomainCookie(tab.url);
+    clearCookie(tab);
     reloadCurrentTab();
 });
+
+function clearCookie(tab) {
+    clearCurrentActiveTabCookie(tab.url);
+    clearCurrentActiveTabDomainCookie(tab.url);
+}
 
 function clearCurrentActiveTabCookie(url) {
     chrome.cookies.getAll({url: url}, function (cookies) {
@@ -25,7 +29,7 @@ function clearDomainCookies(domain) {
     });
 }
 
-function clearTabDomainCookie(url) {
+function clearCurrentActiveTabDomainCookie(url) {
     let domain = retrieveActiveTabDomain(url);
     clearDomainCookies(domain);
 }
